@@ -1,56 +1,39 @@
-"""Entry program for a one-image news entry: "The World Today", 20 November 2026.
+#!/usr/bin/env python3
+"""Entry program for a one-image newspaper (news-image-20261120).
 
-Copies the bundled entry.png into the output directory, checking first that
-the source really is a PNG or JPEG (by magic bytes) and afterwards that the
-delivered bytes match the source exactly. Standard library only, no network.
+Places the page image at /output/entry.png by copying the entry.png
+that sits beside this script, then checks the copy matches exactly.
 """
 
-import os
+import hashlib
+import shutil
 import sys
-
-PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
-JPEG_MAGIC = b"\xff\xd8\xff"
+from pathlib import Path
 
 
-def fail(message):
-    print(f"error: {message}", file=sys.stderr)
-    sys.exit(1)
+def digest(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.digest()
 
 
 def main():
-    here = os.path.dirname(os.path.abspath(__file__))
-    source = os.path.join(here, "entry.png")
+    src = Path(__file__).resolve().parent / "entry.png"
+    if not src.is_file():
+        print(f"error: source image not found: {src}", file=sys.stderr)
+        return 1
 
-    if not os.path.isfile(source):
-        fail(f"source image not found: {source}")
+    out_dir = Path("/output")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    dst = out_dir / "entry.png"
 
-    with open(source, "rb") as fh:
-        data = fh.read()
+    shutil.copyfile(src, dst)
 
-    if not data:
-        fail("source image is empty")
-    if not (data.startswith(PNG_MAGIC) or data.startswith(JPEG_MAGIC)):
-        fail("source image is neither PNG nor JPEG (bad magic bytes)")
-
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    try:
-        os.makedirs(out_dir, exist_ok=True)
-    except OSError as exc:
-        fail(f"cannot create output directory {out_dir}: {exc}")
-
-    dest = os.path.join(out_dir, "entry.png")
-    try:
-        with open(dest, "wb") as fh:
-            fh.write(data)
-    except OSError as exc:
-        fail(f"cannot write {dest}: {exc}")
-
-    with open(dest, "rb") as fh:
-        delivered = fh.read()
-    if delivered != data:
-        fail("verification failed: delivered bytes differ from source bytes")
-
-    print(f"wrote {dest} ({len(data)} bytes)")
+    if digest(src) != digest(dst):
+        print("error: copied file differs from the source", file=sys.stderr)
+        return 1
     return 0
 
 
