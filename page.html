@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The World Today — Friday 20 November 2026</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1024px; height:1024px; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f6efdd; color:#17130b;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    width:1024px; height:1024px; overflow:hidden;
+    padding:6px 18px 5px;
+    display:flex; flex-direction:column;
+    background:#f6efdd;
+  }
+  .serif { font-family: Georgia, 'DejaVu Serif', 'Times New Roman', serif; }
+
+  /* ---------- topper ---------- */
+  .topper {
+    display:flex; justify-content:space-between;
+    font-size:9.5px; letter-spacing:2.2px; color:#6b5f45;
+    line-height:12px; text-transform:uppercase;
+  }
+
+  /* ---------- red masthead ---------- */
+  .masthead {
+    margin-top:3px; background:#c8102e; color:#fff; text-align:center;
+    font-family:'Nimbus Sans Narrow','Arial Narrow',Arial,sans-serif;
+    font-weight:700; font-size:44px; letter-spacing:3px; line-height:44px; height:44px;
+  }
+
+  /* ---------- date band ---------- */
+  .dateband {
+    margin-top:3px; border-top:3px solid #17130b; border-bottom:1px solid #17130b;
+    text-align:center; padding:2px 0 2px;
+  }
+  .dateband .d { font-size:20px; font-weight:700; letter-spacing:4px; line-height:24px; }
+  .dateband .s { font-size:9.5px; letter-spacing:2.2px; color:#8c1f1f; font-weight:700; line-height:12px; margin-top:1px; }
+
+  /* ---------- numbers strip ---------- */
+  .numbers {
+    margin-top:3px; height:30px;
+    border-top:1px solid #d8cdb2; border-bottom:1px solid #d8cdb2;
+    display:flex; align-items:center;
+  }
+  .num { flex:1; text-align:center; padding:0 3px; }
+  .num + .num { border-left:1px solid #e3d9bf; }
+  .num b { display:block; font-family:Georgia, serif; font-size:15px; color:#8c6d1f; line-height:17px; }
+  .num span { display:block; font-size:8px; letter-spacing:.3px; color:#4c4636; text-transform:uppercase; line-height:9.5px; margin-top:1px; }
+
+  .kicker { color:#c8102e; font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; }
+  .ph { overflow:hidden; background:#ddd3ba; }
+  .ph img { width:100%; height:100%; display:block; object-fit:cover; }
+  .no {
+    display:inline-block; background:#c8102e; color:#fff; font-family:Arial,sans-serif;
+    font-size:9px; font-weight:700; line-height:12px; padding:0 4px; margin-right:4px;
+    vertical-align:1px;
+  }
+
+  /* ---------- lead zone ---------- */
+  .lead { margin-top:5px; display:flex; gap:14px; }
+  .lead-main { width:606px; flex:none; }
+  .lead-main .ph { height:52px; }
+  .lead-main .kicker { margin-top:5px; line-height:13px; }
+  .lead-main h1 { font-size:28px; line-height:31px; font-weight:700; letter-spacing:-.2px; margin-top:1px; }
+  .lead-main p { font-size:12px; line-height:15px; color:#3a362b; margin-top:2px; }
+  .lead-main .sub { font-size:12.5px; line-height:15px; font-weight:700; color:#8c1f1f; margin-top:3px; }
+  .lead-side { flex:1; display:flex; flex-direction:column; gap:5px; }
+  .lead-side .ph { height:32px; }
+  .lead-side .kicker { margin-top:3px; line-height:11px; font-size:9px; }
+  .lead-side h2 { font-size:13.5px; line-height:16px; font-weight:700; margin-top:1px; }
+  .lead-side p { font-size:10.5px; line-height:13px; color:#4c4636; margin-top:1px; }
+
+  /* ---------- picture strip ---------- */
+  .strip { margin-top:4px; display:flex; gap:12px; border-top:2px solid #17130b; padding-top:4px; }
+  .strip article { flex:1; }
+  .strip .ph { height:26px; }
+  .strip h3 { font-size:11px; line-height:12.5px; font-weight:700; margin-top:2px; }
+  .strip p { font-size:9px; line-height:11px; color:#4c4636; margin-top:1px; }
+
+  /* ---------- body header ---------- */
+  .bodyhead {
+    margin-top:3px; border-top:2px solid #17130b; border-bottom:1px solid #d8cdb2;
+    display:flex; justify-content:space-between; align-items:baseline; padding:2px 0 2px;
+  }
+  .bodyhead .t { font-size:12.5px; font-weight:700; letter-spacing:2.2px; }
+  .bodyhead .r { font-size:9px; letter-spacing:1.6px; color:#6b5f45; }
+
+  /* ---------- dense columns ---------- */
+  .cols {
+    margin-top:3px; flex:1;
+    columns:3; column-gap:16px; column-rule:1px solid #ddd2b6;
+  }
+  .pc { display:flex; gap:6px; break-inside:avoid; margin-bottom:1px; }
+  .pc .ph { width:58px; height:28px; flex:none; }
+  .pc h5 { font-family:Georgia, serif; font-size:10.5px; line-height:11.5px; font-weight:700; }
+  .pc p { font-size:9px; line-height:10px; color:#4c4636; margin-top:1px; }
+  .tx { break-inside:avoid; margin-bottom:1px; border-top:1px solid #e0d5b8; padding-top:1px; }
+  .tx h5 { font-family:Georgia, serif; font-size:10.5px; line-height:12px; font-weight:700; }
+  .tx p { font-size:9px; line-height:10px; color:#4c4636; margin-top:1px; }
+
+  /* ---------- footer ---------- */
+  footer { margin-top:3px; border-top:2px solid #17130b; padding-top:4px; display:flex; gap:14px; }
+  .mapbox { width:300px; flex:none; }
+  .mapbox .cap { font-size:9px; font-weight:700; letter-spacing:1.8px; line-height:11px; }
+  .mapwrap { position:relative; height:26px; margin-top:2px; overflow:hidden; background:#cfe3ee; }
+  .mapwrap img { width:100%; height:100%; display:block; object-fit:cover; object-position:50% 38%; }
+  .pin {
+    position:absolute; width:7px; height:7px; border-radius:50%;
+    background:#c8102e; border:1.5px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,.35);
+    transform:translate(-50%,-50%);
+  }
+  .foot-text { flex:1; padding-top:1px; }
+  .foot-text p { font-size:10px; line-height:13px; color:#5a5344; }
+  .foot-text p b { color:#17130b; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topper"><span>One day &middot; the whole world</span><span>World edition &middot; No. 325</span></div>
+
+  <div class="masthead">THE WORLD TODAY</div>
+
+  <div class="dateband">
+    <div class="d serif">FRIDAY 20 NOVEMBER 2026</div>
+    <div class="s">52 STORIES &middot; 24 IN PICTURES &middot; EVERY CONTINENT &middot; ALL FROM THIS ONE DAY</div>
+  </div>
+
+  <section class="numbers">
+    <div class="num"><b>9&ndash;6</b><span>World Court vote: Myanmar genocide</span></div>
+    <div class="num"><b>$81.3BN</b><span>Raised in Anthropic&rsquo;s record IPO</span></div>
+    <div class="num"><b>$48.3BN</b><span>US war on Iran &mdash; Pentagon cost so far</span></div>
+    <div class="num"><b>300,000+</b><span>Moved to shelters ahead of Cyclone Akvan</span></div>
+    <div class="num"><b>26BN KM</b><span>Voyager 1, one light-day from Earth</span></div>
+    <div class="num"><b>&minus;4.8%</b><span>Japan&rsquo;s Nikkei in the AI sell-off</span></div>
+  </section>
+
+  <section class="lead">
+    <div class="lead-main">
+      <div class="ph"><img src="art/summit.jpg" alt="" style="object-position:50% 50%"></div>
+      <div class="kicker"><span class="no">1</span>Shenzhen &middot; APEC Summit</div>
+      <h1 class="serif">THREE LEADERS, ONE DECLARATION</h1>
+      <p>Trump, Xi and Putin sign a four-point joint declaration after their first three-way meeting &mdash; cutting nuclear risk, reforming the UN, steadying energy supplies and the ICC&rsquo;s reach. The text names neither Ukraine nor Iran; talks ran 70 minutes, Trump called Putin a friend, and Europe and Ukraine were not at the table.</p>
+      <p class="sub">TRUMP: HIS CALL ON WIDENING THE IRAN WAR WAITS UNTIL 2027</p>
+    </div>
+    <div class="lead-side">
+      <article>
+        <div class="ph"><img src="art/cyclone.jpg" alt="" style="object-position:50% 50%"></div>
+        <div class="kicker"><span class="no">2</span>Odisha &middot; Weather</div>
+        <h2 class="serif">CYCLONE AKVAN SLAMS INTO ODISHA</h2>
+        <p>More than 300,000 people moved to shelters as the storm hit near Gopalpur around noon, winds near 100 km/h.</p>
+      </article>
+      <article>
+        <div class="ph"><img src="art/court.jpg" alt="" style="object-position:50% 42%"></div>
+        <div class="kicker"><span class="no">3</span>The Hague &middot; World Court</div>
+        <h2 class="serif">WORLD COURT: MYANMAR COMMITTED GENOCIDE</h2>
+        <p>The 9&ndash;6 ruling is the first holding a state responsible for genocide; 1.3m Rohingya remain displaced.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="strip">
+    <article>
+      <div class="ph"><img src="art/nyse.jpg" alt="" style="object-position:50% 38%"></div>
+      <h3 class="serif"><span class="no">4</span>ANTHROPIC CLOSES 17% UP ON NASDAQ DEBUT</h3>
+      <p>Opened $111.50, closed near $97 vs the $83 offer; $81.3bn raised, value near $1.5tn.</p>
+    </article>
+    <article>
+      <div class="ph"><img src="art/selloff.jpg" alt="" style="object-position:50% 50%"></div>
+      <h3 class="serif"><span class="no">5</span>AI SELL-OFF DEEPENS: NIKKEI DOWN 4.8%</h3>
+      <p>S&amp;P 500 falls 2%, a fifth straight loss; SoftBank &minus;16%, AMD &minus;7%, Korea halts sell orders.</p>
+    </article>
+    <article>
+      <div class="ph"><img src="art/riyadh.jpg" alt="" style="object-position:50% 50%"></div>
+      <h3 class="serif"><span class="no">6</span>HOUTHI MISSILE DAMAGES RIYADH TOWER</h3>
+      <p>The PIF tower is hit in the financial district; no injuries; Gulf states condemn it.</p>
+    </article>
+    <article>
+      <div class="ph"><img src="art/cop31.jpg" alt="" style="object-position:50% 50%"></div>
+      <h3 class="serif"><span class="no">7</span>COP31 FINAL DAY: DEAL OR DEADLOCK</h3>
+      <p>The draft drops any fossil-fuel phase-out; Pacific nations and African blocs push back.</p>
+    </article>
+  </section>
+
+  <div class="bodyhead">
+    <span class="t serif">THE DAY IN FULL</span>
+    <span class="r">EVERY STORY NUMBERED &middot; PICTURES THROUGHOUT</span>
+  </div>
+
+  <section class="cols">
+    <div class="pc"><div class="ph"><img src="art/gta.jpg" alt=""></div><div><h5><span class="no">8</span>GTA 6 SALES PASS $2.3BN IN DAYS</h5><p>On course to be the biggest entertainment launch ever.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/voyager.jpg" alt=""></div><div><h5><span class="no">9</span>VOYAGER 1 REACHES ONE LIGHT-DAY FROM EARTH</h5><p>Over 26bn km out, 49 years after launch, still sending data home.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/bridge.jpg" alt=""></div><div><h5><span class="no">10</span>UKRAINE HITS CRIMEA BRIDGE A THIRD TIME</h5><p>Rail traffic halted; Putin vows a response &ldquo;far more painful&rdquo;; Kyiv hit again on Friday.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/tanker.jpg" alt=""></div><div><h5><span class="no">11</span>TANKER BURNS AFTER MINE IN HORMUZ</h5><p>Iran steps up attacks; the Senate rejects limits on Trump&rsquo;s war powers, 48 to 51.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/nkplant.jpg" alt=""></div><div><h5><span class="no">12</span>NORTH KOREA EXPANDS URANIUM PLANT &mdash; UN</h5><p>Yongbyon enrichment grows; no inspectors since 2009; Trump &ldquo;too busy&rdquo; to meet Kim.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/drought.jpg" alt=""></div><div><h5><span class="no">13</span>FIJI DECLARES DISASTER IN EL NI&Ntilde;O DROUGHT</h5><p>Tonga declares an emergency; the Cook Islands brace for Cyclone Xavier.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/seoul.jpg" alt=""></div><div><h5><span class="no">14</span>SEOUL COURT ORDERS RETRIAL FOR EX-PM HAN</h5><p>Retrial ordered in the martial-law case; the top court overturns one conviction.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/nvidia.jpg" alt=""></div><div><h5><span class="no">15</span>CALIFORNIA OPENS PROBE INTO NVIDIA</h5><p>Did chips or secret data reach China? 879,000 chips approved for Chinese firms.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/ebola.jpg" alt=""></div><div><h5><span class="no">16</span>KENYA DISCHARGES ITS LAST EBOLA PATIENT</h5><p>37 days after the first case; preparation, not luck, gets the credit.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/cricket.jpg" alt=""></div><div><h5><span class="no">17</span>NICHOLLS&rsquo; 113* RESCUES NEW ZEALAND</h5><p>His unbeaten century lifts New Zealand from 70 for 5 against India.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/zelenskyy.jpg" alt=""></div><div><h5><span class="no">18</span>EUROPE READY TO TALK WITH RUSSIA &mdash; BERLIN</h5><p>Allies in Berlin; Kushner floats a NATO-style guarantee; Merz criticises Shenzhen.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/gaza.jpg" alt=""></div><div><h5><span class="no">19</span>ISRAELI TROOPS CROSS GAZA&rsquo;S YELLOW LINE</h5><p>First incursion since the truce; a baby dies of cold as rains flood the camps.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/venezuela.jpg" alt=""></div><div><h5><span class="no">20</span>US &amp; VENEZUELA SIGN MILITARY DEAL</h5><p>Hegseth calls Venezuela a compliant partner, under a year after Maduro&rsquo;s removal.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/senegal.jpg" alt=""></div><div><h5><span class="no">21</span>DOZENS MISSING AS MIGRANT BOAT CAPSIZES</h5><p>Four bodies recovered; Canary Islands arrivals up nearly two-thirds.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/mercury.jpg" alt=""></div><div><h5><span class="no">22</span>BEPICOLOMBO ENTERS MERCURY&rsquo;S ORBIT</h5><p>Only the second mission ever to orbit the innermost planet.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/lastorm.jpg" alt=""></div><div><h5><span class="no">23</span>EL NI&Ntilde;O STORM THREATENS LOS ANGELES</h5><p>Flooding and mudslides feared; beaches vanish along the coast.</p></div></div>
+    <div class="pc"><div class="ph"><img src="art/haiti.jpg" alt=""></div><div><h5><span class="no">24</span>HAITI FORCES RETAKE MARTISSANT CORRIDOR</h5><p>34 suspected gang members killed; crowds thank Bukele for Salvadoran troops.</p></div></div>
+    <div class="tx"><h5><span class="no">25</span>SUDAN: DRONE STRIKE KILLS 10 AT GOLD MINE</h5><p>Amnesty calls nine RSF drone attacks on civilians possible war crimes.</p></div>
+    <div class="tx"><h5><span class="no">26</span>BUKELE REGISTERS FOR A THIRD TERM</h5><p>Six more years sought after the 2025 rule change scrapped re-election limits.</p></div>
+    <div class="tx"><h5><span class="no">27</span>SENATE PASSES PERMITTING OVERHAUL 62&ndash;33</h5><p>The energy bill, backed by AI and energy firms, goes to the House next.</p></div>
+    <div class="tx"><h5><span class="no">28</span>IEA: IRAN WAR CRUSHES HORMUZ CONFIDENCE</h5><p>The biggest threat to energy security in history, the agency says.</p></div>
+    <div class="tx"><h5><span class="no">29</span>JAPAN CORE INFLATION HITS YEAR&rsquo;S HIGH</h5><p>Just under the 2.3% forecast; a rate rise still expected; the yen nears 159.</p></div>
+    <div class="tx"><h5><span class="no">30</span>BRAZIL SELLS $1BN TO CURB THE DOLLAR</h5><p>The real has lost about 18% in a month, near 5.93 per dollar.</p></div>
+    <div class="tx"><h5><span class="no">31</span>US FIRM WINS KENYA MINERALS DEAL</h5><p>Frontier Minerals takes Mrima Hill over Chinese rivals; deposits above $60bn.</p></div>
+    <div class="tx"><h5><span class="no">32</span>WHITE HOUSE FIRES CYBER DIRECTOR</h5><p>Cairncross out after a week of outages; the EU reports an AI-powered cyberattack.</p></div>
+    <div class="tx"><h5><span class="no">33</span>RACE TO SUCCEED GUTERRES STALLS</h5><p>Eight Council votes, still no agreement on the next UN chief.</p></div>
+    <div class="tx"><h5><span class="no">34</span>ARSON &amp; PROTESTS SPREAD IN BANGLADESH</h5><p>Unrest grows as Hasina&rsquo;s planned return nears; her passport bid is rejected.</p></div>
+    <div class="tx"><h5><span class="no">35</span>MOSQUE SET ON FIRE IN NORTHERN ISRAEL</h5><p>Revenge graffiti at al-Dahi; eight hurt in a car-ramming in Kafr Qasim.</p></div>
+    <div class="tx"><h5><span class="no">36</span>IRAQ GIVES KATAIB HEZBOLLAH A DEADLINE</h5><p>The PM gives the militia until Friday to leave Jurf al-Nasr.</p></div>
+    <div class="tx"><h5><span class="no">37</span>DENMARK RATIFIES GREENLAND DEAL WITH US</h5><p>Parliament votes unanimously after months of tension.</p></div>
+    <div class="tx"><h5><span class="no">38</span>STRIKES REPORTED NEAR BADME</h5><p>Drone and artillery fire as Ethiopia and Eritrea build up border forces.</p></div>
+    <div class="tx"><h5><span class="no">39</span>GOLD FALLS 4.2% AS DOLLAR STAYS HIGH</h5><p>Down about 11% in a month; the US 10-year yield stands above 5%.</p></div>
+    <div class="tx"><h5><span class="no">40</span>IMF: PUBLIC DEBT NEARS 100% OF WORLD GDP</h5><p>The highest share since the Second World War, the fund warns.</p></div>
+    <div class="tx"><h5><span class="no">41</span>THOUSANDS MARCH IN COLOMBIA</h5><p>Unions call a national strike over tax plans, the first under de la Espriella.</p></div>
+    <div class="tx"><h5><span class="no">42</span>PAKISTAN RAIDS KILL 22 MILITANTS</h5><p>Strikes in Khyber Pakhtunkhwa, near the Afghan border.</p></div>
+    <div class="tx"><h5><span class="no">43</span>MONGOLIA&rsquo;S PRESIDENT RESIGNS</h5><p>Kh&uuml;rels&uuml;kh steps down; an election follows within four months.</p></div>
+    <div class="tx"><h5><span class="no">44</span>SOMALIA EXPELS UAE AMBASSADOR</h5><p>Mogadishu accuses Abu Dhabi of undermining its sovereignty.</p></div>
+    <div class="tx"><h5><span class="no">45</span>PHILIPPINES &amp; CHILE SIGN TRADE DEAL</h5><p>Manila&rsquo;s first with a Latin American country, signed at APEC.</p></div>
+    <div class="tx"><h5><span class="no">46</span>WORLD CHILDREN&rsquo;S DAY MARKED WORLDWIDE</h5><p>The UN day, 20 November, is marked across the globe.</p></div>
+    <div class="tx"><h5><span class="no">47</span>UK &amp; EU HOLD BRUSSELS RESET SUMMIT</h5><p>Youth mobility, food trade and carbon deals on the table; pressure on PM Burnham over Brexit.</p></div>
+    <div class="tx"><h5><span class="no">48</span>TAKAICHI GETS COOL APEC RECEPTION</h5><p>The first Japanese leader visit since 2019; ties strained over Taiwan.</p></div>
+    <div class="tx"><h5><span class="no">49</span>S&Aacute;NCHEZ ADMITS MISTAKES IN TV DEBATE</h5><p>Spain&rsquo;s PM faces Feij&oacute;o ahead of the election.</p></div>
+    <div class="tx"><h5><span class="no">50</span>EUROPE&rsquo;S YOUTH PLAN STRIKES IN 25+ COUNTRIES</h5><p>Young people protest living costs and militarisation.</p></div>
+    <div class="tx"><h5><span class="no">51</span>IEA: AFRICA&rsquo;S SOLAR IMPORTS HIT 26 GW</h5><p>Against only ~10 GW recorded installed &mdash; far more panels at work than figures show.</p></div>
+    <div class="tx"><h5><span class="no">52</span>UN: NO STATE OK NEEDED TO FORM A GROUP</h5><p>Forming or joining a group needs no government approval (General Comment No. 38).</p></div>
+  </section>
+
+  <footer>
+    <div class="mapbox">
+      <div class="cap">WHERE IT HAPPENED</div>
+      <div class="mapwrap">
+        <img src="art/map.jpg" alt="">
+        <span class="pin" style="left:25.5%; top:26%"></span>
+        <span class="pin" style="left:24.5%; top:56%"></span>
+        <span class="pin" style="left:55.5%; top:19%"></span>
+        <span class="pin" style="left:59%; top:48%"></span>
+        <span class="pin" style="left:45.5%; top:58%"></span>
+        <span class="pin" style="left:69%; top:53%"></span>
+        <span class="pin" style="left:76%; top:43%"></span>
+        <span class="pin" style="left:80.5%; top:28%"></span>
+      </div>
+    </div>
+    <div class="foot-text">
+      <p><b>DATE CHECK</b> &mdash; every story on this page happened, or was first reported, on Friday 20 November 2026 (UTC); nothing older carried in.</p>
+      <p>Sources: One Turn &middot; Open Chronicle &middot; TRT World &mdash; full list in SOURCES.md</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
